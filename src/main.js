@@ -68,3 +68,24 @@ console.log(products);
 // ]
 
 // task-03
+function findProduct(products, productName) {
+  for (const product of products) {
+    if (product.name.toLowerCase() === productName.toLowerCase()) {
+      return product;
+    }
+  }
+  return null;
+}
+
+console.log(findProduct(products, 'НАВУШНИКИ'));
+// {
+//   name: 'Навушники',
+//   price: 2500,
+//   quantity: 8,
+//   available: true,
+//   tags: ['audio', 'wireless', 'popular']
+// }
+
+console.log(findProduct(products, 'Клавіатура')); // null
+
+// task-04
