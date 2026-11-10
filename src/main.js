@@ -89,3 +89,65 @@ console.log(findProduct(products, 'НАВУШНИКИ'));
 console.log(findProduct(products, 'Клавіатура')); // null
 
 // task-04
+
+function createOrderItem(products, productName, orderedQuantity) {
+  const product = findProduct(products, productName);
+  const foundProduct = {
+    name: product.name,
+    price: product.price,
+    quantity: orderedQuantity,
+  };
+
+  foundProduct.total = foundProduct.quantity * foundProduct.price;
+
+  if (orderedQuantity <= 0 || orderedQuantity > product.quantity) {
+    return null;
+  } else {
+    product.quantity -= orderedQuantity;
+    if (product.quantity === 0) {
+      product.available = false;
+    }
+    return foundProduct;
+  }
+}
+
+console.log(createOrderItem(products, 'Навушники', 2));
+// {
+//   name: 'Навушники',
+//   price: 2500,
+//   quantity: 2,
+//   total: 5000
+// }
+
+console.log(products);
+// [
+//   ...
+//   {
+//     name: 'Навушники',
+//     price: 2500,
+//     quantity: 6,
+//     available: true,
+//     tags: ['audio', 'wireless', 'popular']
+//   },
+//   ...
+// ]
+
+console.log(createOrderItem(products, 'Миша', 3));
+// {
+//   name: 'Миша',
+//   price: 1200,
+//   quantity: 3,
+//   total: 3600
+// }
+
+console.log(products);
+// [
+//   ...
+//   {
+//     name: 'Миша',
+//     price: 1200,
+//     quantity: 0,
+//     available: false,
+//     tags: ['gaming', 'popular']
+//   }
+// ]
